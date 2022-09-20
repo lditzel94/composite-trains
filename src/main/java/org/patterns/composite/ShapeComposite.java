@@ -17,10 +17,16 @@ public class ShapeComposite extends Shape {
 
     @Override
     public double calcArea() {
-        double total = 0;
-        for ( var shape : shapes ) {
-            total += shape.calcArea();
-        }
+        Double total = shapes.stream().reduce( 0D, ( subtotal, shape ) -> subtotal + shape.calcArea(), Double::sum );
+
+        /** Version vista en clase
+         * -----------------------
+         double total = 0;
+         for ( var shape : shapes ) {
+         total += shape.calcArea();
+         }
+         * -----------------------
+         **/
 
         return total;
     }
