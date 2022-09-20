@@ -1,2 +1,27 @@
-package org.patterns.composite;public class ShapeComposite {
+package org.patterns.composite;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class ShapeComposite extends Shape {
+
+    private List<Shape> shapes;
+
+    public ShapeComposite() {
+        this.shapes = new ArrayList<Shape>();
+    }
+
+    public void add( Shape shape ) {
+        shapes.add( shape );
+    }
+
+    @Override
+    public double calcArea() {
+        double total = 0;
+        for ( var shape : shapes ) {
+            total += shape.calcArea();
+        }
+
+        return total;
+    }
 }
